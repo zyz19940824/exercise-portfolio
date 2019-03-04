@@ -1,92 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-		<meta charset="utf-8">
-		<title>Scatterplot</title>
-	</head>
-	<body>
-		<script src="js/d3.min.js"></script>
-    <script>
-		var width = 800;
-		var height = 800;
-		d3.csv("data/nfl-rushing.csv").then (function(data) {
-    var svg = d3.select("body").append("svg");
-    var padding = 50;
-    var xScale = d3.scaleLinear()
-                   .domain([0, d3.max(data, function(d){
-                    return d.Yds })])
-                    ///not sure whether is d[0] or note
-                  .range([padding, width - padding]);
 
-    var yScale = d3.scaleLinear()
-                  .domain([0, d3.max(data, function(d){
-                    return d.TD
-                      })])
+<head>
+  <meta charset="utf-8">
+  <title>Scatterplot</title>
+</head>
 
-                    ///not sure whether is d[1] or d.Yds
+<body>
+  <script src="js/d3.min.js"></script>
+  <script>
+    var width = 800;
+    var height = 800;
+    d3.csv("data/nfl-rushing.csv").then(function(data) {
+          var svg = d3.select("body").append("svg");
+          var padding = 50;
+          var xScale = d3.scaleLinear()
+            .domain([0, d3.max(data, function(d) {
+              return d.Yds
+            })])
+            ///not sure whether is d[0] or note
+            .range([padding, width - padding]);
 
-                  .range([padding, height - padding]);
-                  ///need add a number? in email
-   ///not sure whether correct or not here
-    var rScale = d3.scaleLinear()
-                   .domain([0, d3.max(data, function(d){
-                    return d.fum
-                  })])
-                    ///not sure whether is d[2] or not
-                   .range([padding, ??? - padding]);
-                  //how to write here
-    ///not sure whether correct or not here
-    ///././.?????
-    svg.attr("width", width + padding)
-       .attr("height", height + padding);
+          var yScale = d3.scaleLinear()
+            .domain([0, d3.max(data, function(d) {
+              return d.TD
+            })])
 
-    svg.selectAll("circle")
-		   .data(data)
-			 .enter()
-			 .append("circle")
-			 .attr("cx", function(d){
-				 return xScare(d.Yds)
-			 })
-		   .attr("cy", function(d){
-				 return yScare(d.TD)
-			 })
-			 .attr("r", function(d){
-				 return rScare(d.fum)
-         ///not sure
-			 });
+            ///not sure whether is d[1] or d.Yds
 
-       var labels = svg.selectAll("text")
-			                     .data(data)
-													 .enter()
-													 .append("text")
-													 .attr("x", function(d){
-                             return xScale(d.Yds) + rScale(d.TD + 1})
-                           .attr("y", function(d){
-                             return yScale(d.TD) + 1})
-                           .attr("r", function(d){
-                               return rScale(d.fum) + 1})
-                           .text(function(d) {
-                             return d.fum
-                           });
-                           ////////how to write here
+            .range([padding, height - padding]);
+          ///need add a number? in email
+          ///not sure whether correct or not here
+          var rScale = d3.scaleLinear()
+            .domain([0, d3.max(data, function(d) {
+              return d.fum
+            })])
+            ///not sure whether is d[2] or not
+            .range([padding, ? ? ? -padding]);
+          //how to write here
+          ///not sure whether correct or not here
+          ///././.?????
+          svg.attr("width", width + padding)
+            .attr("height", height + padding);
+
+          svg.selectAll("circle")
+            .data(data)
+            .enter()
+            .append("circle")
+            .attr("cx", function(d) {
+              return xScare(d.Yds)
+            })
+            .attr("cy", function(d) {
+              return yScare(d.TD)
+            })
+            .attr("r", function(d) {
+              return rScare(d.fum)
+              ///not sure
+            });
+
+          var labels = svg.selectAll("text")
+            .data(data)
+            .enter()
+            .append("text")
+            .attr("x", function(d) {
+                return xScale(d.Yds) + rScale(d.TD + 1
+                })
+              .attr("y", function(d) {
+                return yScale(d.TD) + 1
+              })
+              .attr("r", function(d) {
+                return rScale(d.fum) + 1
+              })
+              .text(function(d) {
+                return d.fum
+              });
+              ////////how to write here
 
 
-       var xAxis = d3.axisBottom()
-										 .scale(xScale)
-										 .ticks(4);
-							   svg.append("g")
-										.attr("class", "x-axis")
-                    .attr("transform", "translate(0, " + (h - padding) + ")")
-										.call(xAxis);
-			 var yAxis = d3.axisLeft()
-			              .scale(yScale)
-                    .ticks(4);
-								 svg.append("g")
-										.attr("class", "y-axis")
-                    .attr("transform", "translate(" + padding + "," + 0 + ")")
-										.call(yAxis);
+              var xAxis = d3.axisBottom()
+                .scale(xScale)
+                .ticks(4); svg.append("g")
+              .attr("class", "x-axis")
+              .attr("transform", "translate(0, " + (h - padding) + ")")
+              .call(xAxis);
+              var yAxis = d3.axisLeft()
+                .scale(yScale)
+                .ticks(4); svg.append("g")
+              .attr("class", "y-axis")
+              .attr("transform", "translate(" + padding + "," + 0 + ")")
+              .call(yAxis);
 
   </script>
 </body>
+
 </html>
 /////color why not red
