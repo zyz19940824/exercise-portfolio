@@ -18,7 +18,7 @@
             .domain([0, d3.max(data, function(d) {
               return d.Yds
             })])
-            ///not sure whether is d[0] or note
+            ///not sure whether is d[0] or not
             .range([padding, width - padding]);
 
           var yScale = d3.scaleLinear()
@@ -29,18 +29,9 @@
             ///not sure whether is d[1] or d.Yds
 
             .range([padding, height - padding]);
-          ///need add a number? in email
-          ///not sure whether correct or not here
-          var rScale = d3.scaleLinear()
-            .domain([0, d3.max(data, function(d) {
-              return d.fum
-            })])
-            ///not sure whether is d[2] or not
-            .range([padding, ? ? ? -padding]);
-          //how to write here
-          ///not sure whether correct or not here
-          ///././.?????
-          svg.attr("width", width + padding)
+
+          var rScale = d3.scaleSqurt()
+         svg.attr("width", width + padding)
             .attr("height", height + padding);
 
           svg.selectAll("circle")
@@ -48,13 +39,13 @@
             .enter()
             .append("circle")
             .attr("cx", function(d) {
-              return xScare(d.Yds)
+              return xScale(d.Yds)
             })
             .attr("cy", function(d) {
-              return yScare(d.TD)
+              return yScale(d.TD)
             })
             .attr("r", function(d) {
-              return rScare(d.fum)
+              return rScale(d.fum)
               ///not sure
             });
 
@@ -64,7 +55,7 @@
             .append("text")
             .attr("x", function(d) {
                 return xScale(d.Yds) + rScale(d.TD + 1
-                })
+                }))
               .attr("y", function(d) {
                 return yScale(d.TD) + 1
               })
@@ -74,8 +65,7 @@
               .text(function(d) {
                 return d.fum
               });
-              ////////how to write here
-
+        
 
               var xAxis = d3.axisBottom()
                 .scale(xScale)
